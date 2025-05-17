@@ -193,11 +193,10 @@ st.set_page_config(
 
 
 # Setting up tabs
-tab1, tab2, tab3,tab4,tab5 = st.tabs(["Session and Volatility Returns for all sessions", 
+tab1, tab2, tab3,tab4= st.tabs(["Session and Volatility Returns for all sessions", 
                                  "Latest X days of Volatility Returns for each session",
                                  "Probability Matrix",
-                                 "Custom Normalised Returns",
-                                 'Event Specific Distro'])
+                                 "Custom Normalised Returns"])
 
 
 # Defining GitHub Repo
@@ -857,65 +856,65 @@ with tab4:
                 st.text(e)
                 st.markdown(f"<p style='color:red;'>{display_text}</p>", unsafe_allow_html=True)
 
-with tab5:
-        events = ['CPI' , 'Non Farm Payrolls' , 'ISM Manufacturing PMI']
-        selected_event = st.selectbox("Select an event:" , events)
-        duration = ['pre event (8 hr before event)' , 'immediate reaction (1 hr after the event)']
-        dur = st.selectbox("Select duration: " , duration)
+# with tab5:
+#         events = ['CPI' , 'Non Farm Payrolls' , 'ISM Manufacturing PMI']
+#         selected_event = st.selectbox("Select an event:" , events)
+#         duration = ['pre event (8 hr before event)' , 'immediate reaction (1 hr after the event)']
+#         dur = st.selectbox("Select duration: " , duration)
 
-        # getting the data for the timestamps of the event
-        fname='ZN_1h_events_tagged_target_tz.csv'
-        repo_name='DistributionProject'
-        branch='main'
-        plots_directory="Intraday_data_files_processed_folder"
-        link=f"https://raw.githubusercontent.com/krishangguptafibonacciresearch/{repo_name}/{branch}/{plots_directory}/{fname}"
+#         # getting the data for the timestamps of the event
+#         fname='ZN_1h_events_tagged_target_tz.csv'
+#         repo_name='DistributionProject'
+#         branch='main'
+#         plots_directory="Intraday_data_files_processed_folder"
+#         link=f"https://raw.githubusercontent.com/krishangguptafibonacciresearch/{repo_name}/{branch}/{plots_directory}/{fname}"
 
-        df=pd.read_csv(link)
-        df['US/Eastern Timezone']=pd.to_datetime(df.timestamp,errors='coerce',utc=True)
-        df['US/Eastern Timezone']=df['US/Eastern Timezone'].dt.tz_convert('US/Eastern')
+#         df=pd.read_csv(link)
+#         df['US/Eastern Timezone']=pd.to_datetime(df.timestamp,errors='coerce',utc=True)
+#         df['US/Eastern Timezone']=df['US/Eastern Timezone'].dt.tz_convert('US/Eastern')
 
-        # finding the price movements:
-        repo_name = "DistributionProject"
-        branch = "main"
-        plots_directory2 = "Intraday_data_files"
+#         # finding the price movements:
+#         repo_name = "DistributionProject"
+#         branch = "main"
+#         plots_directory2 = "Intraday_data_files"
 
-        # GitHub API URL to list contents of the directory
-        api_url = f"https://api.github.com/repos/krishangguptafibonacciresearch/{repo_name}/contents/{plots_directory2}?ref={branch}"
+#         # GitHub API URL to list contents of the directory
+#         api_url = f"https://api.github.com/repos/krishangguptafibonacciresearch/{repo_name}/contents/{plots_directory2}?ref={branch}"
 
-        # Regular expression to match file pattern
-        pattern = re.compile(r"Intraday_data_ZN_1h_2022-12-20_to_(\d{4}-\d{2}-\d{2})\.csv")
+#         # Regular expression to match file pattern
+#         pattern = re.compile(r"Intraday_data_ZN_1h_2022-12-20_to_(\d{4}-\d{2}-\d{2})\.csv")
 
-        # Fetch file list from GitHub
-        response = requests.get(api_url)
-        if response.status_code != 200:
-            print("Failed to retrieve file list:", response.json())
-            exit()
+#         # Fetch file list from GitHub
+#         response = requests.get(api_url)
+#         if response.status_code != 200:
+#             print("Failed to retrieve file list:", response.json())
+#             exit()
 
-        # Extract filenames and find the latest date
-        files = response.json()
-        matching_files = []
+#         # Extract filenames and find the latest date
+#         files = response.json()
+#         matching_files = []
 
-        for file in files:
-            filename = file["name"]
-            match = pattern.match(filename)
-            if match:
-                date_str = match.group(1)
-                try:
-                    file_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    matching_files.append((file_date, filename))
-                except ValueError:
-                    continue
-        if matching_files:
-            latest_fname2 = max(matching_files)[1]
-            link2 = f"https://raw.githubusercontent.com/krishangguptafibonacciresearch/{repo_name}/{branch}/{plots_directory2}/{latest_fname2}"
-        else:
-            print("No matching files found.")
+#         for file in files:
+#             filename = file["name"]
+#             match = pattern.match(filename)
+#             if match:
+#                 date_str = match.group(1)
+#                 try:
+#                     file_date = datetime.strptime(date_str, "%Y-%m-%d")
+#                     matching_files.append((file_date, filename))
+#                 except ValueError:
+#                     continue
+#         if matching_files:
+#             latest_fname2 = max(matching_files)[1]
+#             link2 = f"https://raw.githubusercontent.com/krishangguptafibonacciresearch/{repo_name}/{branch}/{plots_directory2}/{latest_fname2}"
+#         else:
+#             print("No matching files found.")
 
-        df2=pd.read_csv(link2)
-        df2['US/Eastern Timezone']=pd.to_datetime(df2.Datetime,errors='coerce',utc=True)
-        df2['US/Eastern Timezone']=df2['US/Eastern Timezone'].dt.tz_convert('US/Eastern')
+#         df2=pd.read_csv(link2)
+#         df2['US/Eastern Timezone']=pd.to_datetime(df2.Datetime,errors='coerce',utc=True)
+#         df2['US/Eastern Timezone']=df2['US/Eastern Timezone'].dt.tz_convert('US/Eastern')
 
-        my_dict = {"pre event": 1 , "immediate reaction": 2 , "custom" : 3}
+#         my_dict = {"pre event": 1 , "immediate reaction": 2 , "custom" : 3}
 
-        #final_df = modify_df(selected_event, df , my_dict[dur])
-        #plot(final_df)
+#         #final_df = modify_df(selected_event, df , my_dict[dur])
+#         #plot(final_df)
