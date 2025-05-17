@@ -1,0 +1,136 @@
+name: Hourly Run Trading Economics Calendar
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Free up disk space
+      run: |
+        echo "Checking disk space before cleanup..."
+        df -h
+        sudo apt-get clean
+        sudo apt-get autoremove -y
+        sudo rm -rf /usr/local/lib/android
+        docker system prune -af
+        sudo rm -rf /opt/hostedtoolcache
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/share/chromium
+        sudo rm -rf /usr/local/share/powershell
+        echo "Checking disk space after cleanup..."
+        df -h
+
+    - name: Check out repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies manually
+      run: |
+        pip install --no-cache-dir pandas numpy selenium bs4 pyvirtualdisplay chromedriver_autoinstaller openpyxl
+
+    - name: Run Python script
+      run: python event_calendar_runner_main_github_actions.py
+
+    - name: Configure Git user
+      run: |
+        git config --global user.name "krishanggupta"
+        git config --global user.email "krishanggupta.kg@gmail.com"
+
+    - name: Pull latest changes safely
+      run: |
+        git fetch origin main
+        git stash  # Stash local changes to prevent conflicts
+        git pull --rebase origin main || echo "No updates available"
+        git stash pop || echo "No local changes to restore"
+
+    - name: Commit and push changes if Input_data has files
+      run: |
+        if [ -d "Input_data" ] && [ "$(ls -A Input_data)" ]; then
+          echo "Files detected, committing changes..."
+          git add .
+          git commit -m "Automated update of Input_data folder" || echo "No changes to commit"
+          git push origin main || (git pull --rebase origin main && git push origin main)
+        else
+          echo "No new files in Input_data, skipping commit"
+        fi
+
+
+# name: Hourly Run Trading Economics Calendar
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: '0 * * * *'  # Runs every hour
+
+# jobs:
+#   run-python:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Free up disk space
+#       run: |
+#         echo "Checking disk space before cleanup..."
+#         df -h
+#         sudo apt-get clean
+#         sudo apt-get autoremove -y
+#         sudo rm -rf /usr/local/lib/android
+#         docker system prune -af
+#         sudo rm -rf /opt/hostedtoolcache
+#         sudo rm -rf /usr/share/dotnet
+#         sudo rm -rf /usr/local/share/chromium
+#         sudo rm -rf /usr/local/share/powershell
+#         echo "Checking disk space after cleanup..."
+#         df -h
+
+#     - name: Check out repository
+#       uses: actions/checkout@v3
+#       with:
+#         fetch-depth: 0  
+
+#     - name: Set up Python
+#       uses: actions/setup-python@v4
+#       with:
+#         python-version: '3.12'
+
+#     - name: Install dependencies manually
+#       run: |
+#         pip install --no-cache-dir pandas numpy selenium bs4 pyvirtualdisplay chromedriver_autoinstaller openpyxl
+
+#     - name: Run Python script
+#       run: python event_calendar_runner_main_github_actions.py
+
+#     - name: Configure Git user
+#       run: |
+#         git config --global user.name "krishanggupta"
+#         git config --global user.email "krishanggupta.kg@gmail.com"
+
+#     - name: Pull latest changes
+#       run: |
+#         git fetch origin main
+#         git pull --rebase origin main || echo "No updates available"
+
+#     - name: Commit and push changes if Input_data has files
+#       run: |
+#         if [ -d "Input_data" ] && [ "$(ls -A Input_data)" ]; then
+#           echo "Files detected, committing changes..."
+#           git add .
+#           git commit -m "Automated update of Input_data folder" || echo "No changes to commit"
+#           git push origin main
+#         else
+#           echo "No new files in Input_data, skipping commit"
+#         fi
