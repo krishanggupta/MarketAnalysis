@@ -1,7 +1,7 @@
 Volatility of Returns Statistic,"(Session:US Close 15-17 ET, Interval:1m, Symbol:ZT)"
 count,101.0
-mean,0.7685643168316855
-std,0.9712887978361848
+mean,0.7686440855507449
+std,0.9712512983486363
 min,0.1875
 10%,0.3125
 25%,0.375
@@ -10,5 +10,5 @@ min,0.1875
 95%,2.6875
 99%,5.25
 max,6.0
-skewness,3.672629705785376
-kurtosis,14.250359556398557
+skewness,3.67285874496504
+kurtosis,14.251746630785924
