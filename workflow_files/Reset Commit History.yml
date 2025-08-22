@@ -1,0 +1,35 @@
+name: Reset Commit History
+
+on:
+  schedule:
+    # Runs at 00:00 every Sunday (UTC)
+    - cron: "0 0 * * 0"
+  workflow_dispatch: # Allow manual run
+
+jobs:
+  reset-history:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # get full history
+
+      - name: Configure git
+        run: |
+          git config user.name "krishanggupta"
+          git config user.email "krishanggupta.kg@gmail.com"
+
+      - name: Reset history and keep only latest state
+        run: |
+          # Create orphan branch with no history
+          git checkout --orphan latest_branch
+          git add -A
+          git commit -m "Reset commit history on $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+
+          # Delete old branch and rename
+          git branch -D main || true
+          git branch -m main
+
+          # Force push new history
+          git push origin main --force
