@@ -6,7 +6,10 @@ on:
        - main # Runs on push to the main branch
   schedule:
     - cron: '0 * * * *'  # Runs every hour
-
+    
+concurrency:
+  group: main-branch-ops
+  cancel-in-progress: false
 
 jobs:
   run-python:
