@@ -1,35 +1,72 @@
-name: Reset Commit History
+name: Prune Commit History (Keep Last 7 Days)
 
 on:
   schedule:
-    # Runs at 00:00 every Sunday (UTC)
-    - cron: "0 0 * * 0"
-  workflow_dispatch: # Allow manual run
+    # Runs at 00:00 every day (UTC)
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: main-branch-ops   # shared group for all workflows that push to main
+  cancel-in-progress: false
 
 jobs:
-  reset-history:
+  prune-history:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # get full history
+          fetch-depth: 0
 
       - name: Configure git
         run: |
           git config user.name "krishanggupta"
           git config user.email "krishanggupta.kg@gmail.com"
 
-      - name: Reset history and keep only latest state
+      - name: Safety check: ensure main not updated by others
         run: |
-          # Create orphan branch with no history
-          git checkout --orphan latest_branch
-          git add -A
-          git commit -m "Reset commit history on $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git fetch origin main
+          LOCAL=$(git rev-parse main)
+          REMOTE=$(git rev-parse origin/main)
 
-          # Delete old branch and rename
+          if [ "$LOCAL" != "$REMOTE" ]; then
+            echo "⚠️ Main was updated by another workflow. Skipping reset today."
+            exit 0
+          fi
+
+      - name: Keep only last 7 days of commits
+        run: |
+          # Find commits from last 7 days
+          START_COMMIT=$(git rev-list -n 1 --since="7 days ago" main || echo "")
+
+          if [ -z "$START_COMMIT" ]; then
+            echo "No commits in last 7 days, keeping only latest state"
+            git checkout --orphan latest_branch
+            git add -A
+            git commit -m "Reset: fresh commit on $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          else
+            echo "Keeping commits since: $START_COMMIT"
+            git checkout --orphan temp_branch
+            git commit -m "Reset: base commit on $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+
+            # Replay last 7 days only
+            git cherry-pick $START_COMMIT..main || true
+          fi
+
+          # Replace old main with pruned history
           git branch -D main || true
           git branch -m main
 
-          # Force push new history
+          # Double-check no remote updates before force push
+          git fetch origin main
+          LOCAL=$(git rev-parse main)
+          REMOTE=$(git rev-parse origin/main)
+
+          if [ "$LOCAL" != "$REMOTE" ]; then
+            echo "⚠️ Remote main changed during reset. Aborting push."
+            exit 0
+          fi
+
           git push origin main --force
