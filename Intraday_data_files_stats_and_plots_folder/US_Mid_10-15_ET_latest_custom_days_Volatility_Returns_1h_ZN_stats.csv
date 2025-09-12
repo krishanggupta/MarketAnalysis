@@ -1,7 +1,7 @@
 Volatility of Returns Statistic,"(Session:US Mid 10-15 ET, Interval:1h, Symbol:ZN)"
 count,458.0
-mean,4.96943231441048
-std,2.792983962439784
+mean,4.963973799126638
+std,2.7835502917826234
 min,1.0
 10%,2.5
 25%,3.0
@@ -10,5 +10,5 @@ min,1.0
 95%,10.5
 99%,12.607500000000002
 max,30.0
-skewness,2.4798344249058193
-kurtosis,14.363096127890195
+skewness,2.489134930934873
+kurtosis,14.56073534258082
