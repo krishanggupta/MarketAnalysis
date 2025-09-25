@@ -1,7 +1,7 @@
 "(Return Stats:- Interval:1d, Symbol:ZN)",All day
 count,5456.0
-mean,5.050869849420363
-std,4.602749137935426
+mean,5.050961491649102
+std,4.602668467397604
 min,0.0
 5%,0.25
 25%,1.75
