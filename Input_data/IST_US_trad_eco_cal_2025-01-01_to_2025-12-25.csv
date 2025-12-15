@@ -7093,15 +7093,24 @@ DATETIME,EVENTS,ACTUAL,PREVIOUS,CONSENSUS,FORECAST,TIER
 2025-12-16 20:15:00+05:30,S&P Global Composite PMI FlashDEC,,54.2,,53.2,
 2025-12-16 20:15:00+05:30,S&P Global Services PMI FlashDEC,,54.1,,53,
 2025-12-16 20:15:00+05:30,S&P Global Manufacturing PMI FlashDEC,,52.2,,52,
+<<<<<<< Updated upstream
 2025-12-16 20:30:00+05:30,Housing Starts MoMOCT,,,,0.8%,
+=======
+2025-12-16 20:30:00+05:30,Housing Starts MoMSEP,,-8.5%,,1.0%,
+>>>>>>> Stashed changes
 2025-12-16 20:30:00+05:30,Business Inventories MoMSEP,,0%,0.2%,0.3%,
 2025-12-16 20:30:00+05:30,Retail Inventories Ex Autos MoMSEP,,0%,,0.2%,
-2025-12-16 20:30:00+05:30,Building Permits FinalOCT,,,,1.35M,
 2025-12-16 20:30:00+05:30,Building Permits FinalSEP,,1.33M,,1.34M,
-2025-12-16 20:30:00+05:30,Building Permits MoM FinalSEP,,-2.3%,,0.8%,
+2025-12-16 20:30:00+05:30,Building Permits FinalOCT,,,,1.35M,
 2025-12-16 20:30:00+05:30,Building Permits MoM FinalOCT,,,,0.7%,
+<<<<<<< Updated upstream
 2025-12-16 20:30:00+05:30,Building Permits FinalOCT,,,,1.35M,
 2025-12-16 20:30:00+05:30,Building Permits PrelSEP,,1.33M,1.34M,1.34M,
+=======
+2025-12-16 20:30:00+05:30,Building Permits MoM FinalSEP,,-2.3%,,0.8%,
+2025-12-16 20:30:00+05:30,Building Permits FinalOCT,,,,1.35M,
+2025-12-16 20:30:00+05:30,Building Permits PrelOCT,,,,1.35M,
+>>>>>>> Stashed changes
 2025-12-16 20:30:00+05:30,Building Permits MoM PrelOCT,,,,0.7%,
 2025-12-16 20:30:00+05:30,Housing StartsOCT,,,,1.33M,
 2025-12-16 20:30:00+05:30,Building Permits PrelNOV,,,,1.31M,
@@ -7118,20 +7127,36 @@ DATETIME,EVENTS,ACTUAL,PREVIOUS,CONSENSUS,FORECAST,TIER
 2025-12-16 20:30:00+05:30,Housing Starts MoMOCT,,,,0.8%,
 2025-12-16 20:30:00+05:30,Retail Inventories Ex Autos MoMSEP,,0%,,0.2%,
 2025-12-16 20:30:00+05:30,Building Permits MoM FinalSEP,,-2.3%,,0.8%,
+<<<<<<< Updated upstream
 2025-12-16 20:30:00+05:30,Housing Starts MoMSEP,,-8.5%,,1.0%,
+=======
+2025-12-16 20:30:00+05:30,Housing Starts MoMNOV,,,,1.5%,
+>>>>>>> Stashed changes
 2025-12-16 20:30:00+05:30,Building Permits MoM PrelNOV,,,,-2.9%,
 2025-12-16 20:30:00+05:30,Housing Starts MoMNOV,,,,1.5%,
 2025-12-16 20:30:00+05:30,Housing StartsSEP,,1.307M,1.32M,1.32M,
 2025-12-16 20:30:00+05:30,Business Inventories MoMSEP,,0%,,0.3%,
+<<<<<<< Updated upstream
 2025-12-16 20:30:00+05:30,Building Permits PrelOCT,,,,1.35M,
 2025-12-16 20:30:00+05:30,Housing StartsOCT,,,,1.33M,
 2025-12-16 20:30:00+05:30,Housing StartsSEP,,1.307M,1.32M,1.32M,
 2025-12-16 20:30:00+05:30,Housing StartsNOV,,,,1.35M,
 2025-12-16 20:30:00+05:30,Building Permits MoM PrelOCT,,,,0.7%,
 2025-12-16 20:30:00+05:30,Building Permits MoM PrelSEP,,-2.3%,,0.8%,
+=======
+2025-12-16 20:30:00+05:30,Building Permits PrelSEP,,1.33M,1.34M,1.34M,
+2025-12-16 20:30:00+05:30,Housing StartsSEP,,1.307M,1.32M,1.32M,
+2025-12-16 20:30:00+05:30,Housing StartsOCT,,,,1.33M,
+2025-12-16 20:30:00+05:30,Housing StartsNOV,,,,1.35M,
+>>>>>>> Stashed changes
 2025-12-16 20:30:00+05:30,Building Permits MoM PrelNOV,,,,-2.9%,
-2025-12-16 20:30:00+05:30,Housing Starts MoMNOV,,,,1.5%,
 2025-12-16 20:30:00+05:30,Building Permits MoM PrelSEP,,-2.3%,,0.8%,
+<<<<<<< Updated upstream
+=======
+2025-12-16 20:30:00+05:30,Building Permits MoM PrelOCT,,,,0.7%,
+2025-12-16 20:30:00+05:30,Housing Starts MoMOCT,,,,0.8%,
+2025-12-16 20:30:00+05:30,Building Permits MoM PrelSEP,,-2.3%,,0.8%,
+>>>>>>> Stashed changes
 2025-12-16 20:30:00+05:30,Export Prices YoYOCT,,3.8%,,3.0%,
 2025-12-17 03:00:00+05:30,API Crude Oil Stock ChangeDEC/12,,-4.8M,,,
 2025-12-17 03:00:00+05:30,API Crude Oil Stock ChangeDEC/12,,-4.8M,,,
@@ -7347,6 +7372,7 @@ DATETIME,EVENTS,ACTUAL,PREVIOUS,CONSENSUS,FORECAST,TIER
 2025-12-23 22:00:00+05:30,New Home Sales MoMSEP,,20.5%,,-13.8%,
 2025-12-23 22:00:00+05:30,New Home Sales MoMOCT,,,,1.4%,
 2025-12-23 22:00:00+05:30,New Home SalesOCT,,,,0.7M,
+<<<<<<< Updated upstream
 2025-12-23 23:30:00+05:30,Building Permits MoM FinalNOV,,,,,
 2025-12-23 23:30:00+05:30,New Home SalesOCT,,,,0.7M,
 2025-12-23 23:30:00+05:30,Money SupplyNOV,,$22.3T,,,
@@ -7356,6 +7382,17 @@ DATETIME,EVENTS,ACTUAL,PREVIOUS,CONSENSUS,FORECAST,TIER
 2025-12-23 23:30:00+05:30,New Home SalesSEP,,0.8M,0.71M,0.69M,
 2025-12-23 23:30:00+05:30,Building Permits FinalNOV,,,,1.31M,
 2025-12-23 23:30:00+05:30,Building Permits MoM FinalNOV,,,,,
+=======
+2025-12-23 23:30:00+05:30,Building Permits MoM FinalNOV,,,,,
+2025-12-23 23:30:00+05:30,New Home SalesSEP,,0.8M,0.71M,0.69M,
+2025-12-23 23:30:00+05:30,Money SupplyNOV,,$22.3T,,,
+2025-12-23 23:30:00+05:30,5-Year Note Auction,,,,,
+2025-12-23 23:30:00+05:30,New Home Sales MoMOCT,,,,1.4%,
+2025-12-23 23:30:00+05:30,New Home Sales MoMSEP,,20.5%,,-13.8%,
+2025-12-23 23:30:00+05:30,New Home SalesOCT,,,,0.7M,
+2025-12-23 23:30:00+05:30,Building Permits FinalNOV,,,,1.31M,
+2025-12-23 23:30:00+05:30,Building Permits MoM FinalNOV,,,,,
+>>>>>>> Stashed changes
 2025-12-23 23:30:00+05:30,New Home SalesSEP,,0.8M,0.71M,0.69M,
 2025-12-23 23:30:00+05:30,New Home Sales MoMSEP,,20.5%,,-13.8%,
 2025-12-23 23:30:00+05:30,Money SupplyNOV,,$22.3T,,,
