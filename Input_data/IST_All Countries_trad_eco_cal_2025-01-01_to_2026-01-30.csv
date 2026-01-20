@@ -20204,8 +20204,11 @@ DATETIME,COUNTRY,EVENTS,ACTUAL,PREVIOUS,CONSENSUS,FORECAST,TIER
 2026-01-22 20:30:00+05:30,US,PCE Price Index MoMOCT,,0.3%,,0.2%,
 2026-01-22 20:30:00+05:30,US,Personal Spending MoMOCT,,0.3%,,0.1%,
 2026-01-22 20:30:00+05:30,US,Personal Spending MoMNOV,,,0.5%,0.4%,
-2026-01-22 20:30:00+05:30,US,Personal Income MoMNOV,,,0.4%,0.3%,
 2026-01-22 20:30:00+05:30,US,Personal Income MoMOCT,,0.4%,,0.3%,
+<<<<<<< Updated upstream
+=======
+2026-01-22 20:30:00+05:30,US,Personal Income MoMNOV,,,0.4%,0.3%,
+>>>>>>> Stashed changes
 2026-01-22 20:30:00+05:30,US,Core PCE Price Index MoMOCT,,0.2%,,0.1%,
 2026-01-22 20:30:00+05:30,EA,Consumer Confidence FlashJAN,,-13.1,,-13.6,
 2026-01-22 20:30:00+05:30,US,Core PCE Price Index MoMNOV,,,0.2%,0.1%,
